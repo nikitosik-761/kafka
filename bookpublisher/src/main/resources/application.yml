@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+my:
+  kafka:
+   topic: books.published
+
+spring:
+  application:
+    name: bookpublisher
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/kafkabook
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: broker:9092
