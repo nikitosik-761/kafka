@@ -1,11 +1,11 @@
-package org.bookpersistence.services;
+package org.authorpersistence.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bookpersistence.domain.Notification;
-import org.bookpersistence.exceptions.NotificationPublishException;
+import org.authorpersistence.domain.Notification;
+import org.authorpersistence.exceptions.NotificationPublishException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class KafkaNotificationService implements NotificationService {
+public class KafkaNotificationService implements NotificationService{
 
     private final ObjectMapper objectMapper;
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Value("${my.kafka.notification.topic}")
-    private  String topic;
+    private String topic;
 
     @Override
     public void publishNotification(Notification notification) {
@@ -43,6 +43,6 @@ public class KafkaNotificationService implements NotificationService {
             throw new NotificationPublishException("Unable to publish notification", ex, notification);
         } catch (Exception ex){
             log.error("Error with sending notification: {}", notification, ex);
-         }
+        }
     }
 }
