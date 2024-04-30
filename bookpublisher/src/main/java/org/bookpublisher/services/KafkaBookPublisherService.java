@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bookpublisher.config.KafkaConfigProps;
 import org.bookpublisher.domain.Book;
 import org.bookpublisher.exceptions.BookPublishException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +19,15 @@ public class KafkaBookPublisherService implements BookPublisherService{
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    private final KafkaConfigProps kafkaConfigProps;
+    @Value("${my.kafka.topic}")
+    private String topic;
+
 
     @Override
     public void publish(Book book) {
         try {
             final String payload = objectMapper.writeValueAsString(book);
-            kafkaTemplate.send(kafkaConfigProps.getTopic(), payload)
+            kafkaTemplate.send(topic, payload)
                     .whenComplete(
                             (result, ex) -> {
                                 if (ex == null){

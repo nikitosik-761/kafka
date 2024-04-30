@@ -24,36 +24,36 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
 
-  bookpublisher:
-    image: nikitosbarbos/bookpublisher:latest
-    container_name: bookpublisher
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_PROFILES_ACTIVE: 'production'
-      MY_KAFKA_TOPIC: 'books.published'
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - broker
+#  bookpublisher:
+#    image: nikitosbarbos/bookpublisher:latest
+#    container_name: bookpublisher
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_PROFILES_ACTIVE: 'docker'
+#      MY_KAFKA_TOPIC: 'books.published'
+#      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - broker
 
 
-  bookpersistence:
-    image: nikitosbarbos/bookpersistence:latest
-    container_name: bookpersistence
-    ports:
-      - "8081:8081"
-    environment:
-      SPRING_PROFILES_ACTIVE: 'production'
-      MY_KAFKA_NOTIFICATION_TOPIC: 'notification.created'
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
-    networks:
-      - spring
-      - postgres
-    depends_on:
-      - broker
+#  bookpersistence:
+#    image: nikitosbarbos/bookpersistence:latest
+#    container_name: bookpersistence
+#    ports:
+#      - "8081:8081"
+#    environment:
+#      SPRING_PROFILES_ACTIVE: 'docker'
+#      MY_KAFKA_NOTIFICATION_TOPIC: 'notification.created'
+#      SPRING_KAFKA_BOOTSTRAP_SERVERS: 'broker:29092'
+#    networks:
+#      - spring
+#      - postgres
+#    depends_on:
+#      - broker
 
 
 networks:
