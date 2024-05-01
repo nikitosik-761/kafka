@@ -10,7 +10,7 @@ my:
 
 spring:
   application:
-    name: bookpersistence
+    name: authorpersistence
   datasource:
     password: password
     url: jdbc:postgresql://localhost:5432/kafkaauthorpersistence

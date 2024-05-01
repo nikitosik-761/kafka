@@ -1,19 +1,14 @@
 server:
-  port: 8082
+  port: 8083
   error:
     include-message: always
 
-my:
-  kafka:
-    notification:
-      topic: notification.created
-
 spring:
   application:
-    name: authorpersistence
+    name: notification
   datasource:
     password: password
-    url: jdbc:postgresql://postgres:5432/kafkaauthorpersistence
+    url: jdbc:postgresql://localhost:5432/kafkabooknotification
     username: postgres
   jpa:
     hibernate:
@@ -25,6 +20,6 @@ spring:
     show-sql: true
 
   kafka:
-    bootstrap-servers: broker:9092
+    bootstrap-servers: localhost:9092
     consumer:
-      group-id: author-persistence
+      group-id: notifications

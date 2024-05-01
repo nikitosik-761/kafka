@@ -22,7 +22,7 @@ public class ScheduledBookPublisher {
         this.bookRepository = bookRepository;
     }
 
-    @Scheduled(cron = "0/30 * * * * *")
+    @Scheduled(cron = "0/50 * * * * *")
     public void publishBook() {
         bookRepository.findById(counter).ifPresentOrElse(book -> {
             counter += 1;

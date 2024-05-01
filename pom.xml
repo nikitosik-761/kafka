@@ -23,6 +23,7 @@
 		<module>bookpublisher</module>
         <module>bookpersistence</module>
         <module>authorpersistence</module>
+        <module>notifications</module>
     </modules>
 
 
